@@ -23,19 +23,19 @@
 
       if (editor.contextMenu) {
         editor.addMenuItems({
-          rotateLeft: {
-            label: editor.lang.imagerotate.rotateLeft,
-            icon: this.path + 'icons/rotate-left.png',
-            command: 'rotateLeft',
-            group: 'image',
-            order: 1
-          },
           rotateRight: {
             label: editor.lang.imagerotate.rotateRight,
             icon: this.path + 'icons/rotate-right.png',
             command: 'rotateRight',
             group: 'image',
             order: 1
+          },
+          rotateLeft: {
+            label: editor.lang.imagerotate.rotateLeft,
+            icon: this.path + 'icons/rotate-left.png',
+            command: 'rotateLeft',
+            group: 'image',
+            order: 2
           }
         });
 
