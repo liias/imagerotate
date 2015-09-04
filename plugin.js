@@ -21,17 +21,26 @@
         }
       });
 
+      var translations = editor.lang.imagerotate;
+
+      if (!translations) {
+        translations = {
+          rotateRight: "Rotate Clockwise",
+          rotateLeft: "Rotate Counter-clockwise"
+        }
+      }
+
       if (editor.contextMenu) {
         editor.addMenuItems({
           rotateRight: {
-            label: editor.lang.imagerotate.rotateRight,
+            label: translations.rotateRight,
             icon: this.path + 'icons/rotate-right.png',
             command: 'rotateRight',
             group: 'image',
             order: 1
           },
           rotateLeft: {
-            label: editor.lang.imagerotate.rotateLeft,
+            label: translations.rotateLeft,
             icon: this.path + 'icons/rotate-left.png',
             command: 'rotateLeft',
             group: 'image',
