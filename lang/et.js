@@ -1,4 +1,4 @@
-﻿CKEDITOR.plugins.setLang('imagerotate', 'en', {
+﻿CKEDITOR.plugins.setLang('imagerotate', 'et', {
   rotateRight: 'Pööra päripäeva',
   rotateLeft: 'Pööra vastupäeva'
 });
