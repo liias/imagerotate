@@ -101,38 +101,36 @@
     var dataURL = canvas.toDataURL();
     image.src = dataURL;
     image.setAttribute("data-cke-saved-src", dataURL);
-    image.width = canvas.width;
-    image.height = canvas.height;
+
+    image.style.width = canvas.width + "px";
+    image.style.height = canvas.height + "px";
+
+    // TODO: should I support width and height attributes explicitly if inline style is disallowed?
+    // see http://docs.ckeditor.com/#!/guide/dev_acf-section-example%3A-disallow-inline-styles-and-use-attributes-instead
+    //image.width = canvas.width;
+    //image.height = canvas.height;
   }
 
   function createRotatedImageCanvas(image, angle) {
-    var canvas = _createCanvas(image.width, image.height);
-    var context = canvas.getContext('2d');
-
-    var translateX = 0;
-    var translateY = 0;
-
     angle = angle < 0 ? 360 + angle : angle;
 
+    var canvasWidth = image.width;
+    var canvasHeight = image.height;
     if (angle == 90 || angle == 270) {
-      var canvasWidth = canvas.width;
-      //noinspection JSSuspiciousNameCombination
-      canvas.width = canvas.height;
-      //noinspection JSSuspiciousNameCombination
-      canvas.height = canvasWidth;
+      canvasWidth = image.height;
+      canvasHeight = image.width;
     }
 
-    if (angle == 90 || angle == 180) {
-      translateX = canvas.width;
-    }
+    var x = canvasWidth / 2;
+    var y = canvasHeight / 2;
+    var width = image.width;
+    var height = image.height;
 
-    if (angle == 270 || angle == 180) {
-      translateY = canvas.height;
-    }
-
-    context.translate(translateX, translateY);
+    var canvas = _createCanvas(canvasWidth, canvasHeight);
+    var context = canvas.getContext('2d');
+    context.translate(x, y);
     context.rotate(angle * TO_RADIANS);
-    context.drawImage(image, 0, 0);
+    context.drawImage(image, -width / 2, -height / 2, width, height);
     return canvas;
   }
 
